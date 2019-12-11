@@ -9,7 +9,8 @@ import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
 import javax.persistence.criteria.CriteriaBuilder;
 import javax.persistence.criteria.CriteriaQuery;
-//primary key e entidade
+import javax.transaction.Transactional;
+
 public class GenericDAO<P, E extends Serializable> {
 
 	@PersistenceContext(unitName = "mariokartUnit")
@@ -34,30 +35,38 @@ public class GenericDAO<P, E extends Serializable> {
 		this.clazz = (Class<E>) parametrizedType.getActualTypeArguments()[1];
 	}
 
+	@Transactional
 	public List<E> list() {
-		//select sem ser select
 		CriteriaBuilder builder = em.getCriteriaBuilder();
 		CriteriaQuery<E> query = builder.createQuery(clazz);
 		query.from(clazz);
-		//faz uma consulta na base de dados
 		List<E> resultList = em.createQuery(query).getResultList();
 		return resultList;
 	}
-
+	
+	@Transactional
 	public E findById(P p) {
 		return em.find(clazz, p);
 	}
 
+	@Transactional
 	public void insert(E e) {
 		em.persist(e);
 	}
 
+	@Transactional
 	public E update(E e) {
 		return em.merge(e);
 	}
 
+	@Transactional
 	public void remove(E e) {
 		em.remove(e);
+	}
+	
+	@Transactional
+	public void removeById(P p) {
+		em.remove(findById(p));
 	}
 
 	public EntityManager getEntityManager() {

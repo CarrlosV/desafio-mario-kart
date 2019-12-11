@@ -8,6 +8,10 @@
     <persistence-unit name="mariokartUnit" transaction-type="JTA">
         <provider>org.hibernate.jpa.HibernatePersistenceProvider</provider>
         <jta-data-source>java:openejb/Resource/mariokartDatabase</jta-data-source>
+        
+        <!--<class>com.stefanini.hackaton.entities.Jogador</class>
+        <class>com.stefanini.hackaton.entities.Personagem</class>  -->
+        
         <properties>
             <property name="hibernate.dialect" value="org.hibernate.dialect.MySQL5InnoDBDialect" />
             <!-- As many hibernate properties as you need, some examples: -->
