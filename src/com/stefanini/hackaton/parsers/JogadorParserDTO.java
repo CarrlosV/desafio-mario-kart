@@ -18,7 +18,7 @@ public class JogadorParserDTO extends AbstractParser<JogadorDto, Jogador> {
 	@Override
 	public Jogador toEntity(JogadorDto dto) {
 		Jogador entity = new Jogador();
-//		entity.setId(dto.getId());
+		entity.setId(dto.getId());
 		entity.setNickname(dto.getNickname());
 		entity.setSenha(dto.getSenha());
 		entity.setPersonagem(dto.getPersonagem());

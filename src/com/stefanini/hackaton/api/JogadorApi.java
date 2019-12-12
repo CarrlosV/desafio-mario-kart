@@ -13,7 +13,6 @@ import javax.ws.rs.core.MediaType;
 import javax.ws.rs.core.Response;
 
 import com.stefanini.hackaton.dto.JogadorDto;
-import com.stefanini.hackaton.dto.PersonagemDto;
 import com.stefanini.hackaton.service.JogadorService;
 
 @Path("/jogador")
@@ -40,18 +39,18 @@ public class JogadorApi {
 		return Response.ok(jogadorService.inserir(dto)).build();
 	}
 
-//	Codigos comentados pois não foi solicitado a criação  do put e do delete
-//	@PUT
-//	@Path("/{id}")
-//	public Response alterar(JogadorDto dto, @PathParam("id") Integer id) {
-//		return Response.ok(jogadorService.alterar(dto)).build();
-//	}
-//
-//	@DELETE
-//	@Path("/{id}")
-//	public Response excluir(@PathParam("id") Integer id) {
-//		jogadorService.excluir(id);
-//		return Response.ok().build();
-//	}
+	
+	@PUT
+	@Path("/{id}")
+	public Response alterar(JogadorDto dto, @PathParam("id") Integer id) {
+		return Response.ok(jogadorService.alterar(dto)).build();
+	}
+
+	@DELETE
+	@Path("/{id}")
+	public Response excluir(@PathParam("id") Integer id) {
+		jogadorService.excluir(id);
+		return Response.ok().build();
+	}
 
 }
