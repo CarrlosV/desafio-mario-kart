@@ -24,7 +24,7 @@ USE `marioKart` ;
 DROP TABLE IF EXISTS `marioKart`.`Personagem` ;
 
 CREATE TABLE IF NOT EXISTS `marioKart`.`Personagem` (
-  `id` INT NOT NULL,
+  `id` INT NOT NULL AUTO_INCREMENT,
   `nome` VARCHAR(45) NOT NULL,
   `velocidade` DECIMAL NOT NULL,
   `aceleracao` DECIMAL NOT NULL,
@@ -42,7 +42,7 @@ ENGINE = InnoDB;
 DROP TABLE IF EXISTS `marioKart`.`Jogador` ;
 
 CREATE TABLE IF NOT EXISTS `marioKart`.`Jogador` (
-  `id` INT NOT NULL,
+  `id` INT NOT NULL AUTO_INCREMENT,
   `nickname` VARCHAR(45) NOT NULL,
   `senha` VARCHAR(100) NOT NULL,
   `idPersonagem` INT NOT NULL,

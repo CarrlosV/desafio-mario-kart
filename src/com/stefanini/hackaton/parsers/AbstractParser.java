@@ -9,6 +9,7 @@ public abstract class AbstractParser<DTO, ENTITY> {
 	public abstract ENTITY toEntity(DTO dto);
 
 	public List<DTO> toDTO(List<ENTITY> entities) {
+		System.out.println("Chamando o AbstractParser");
 		List<DTO> dtos = new ArrayList<>();
 
 		for (ENTITY entity : entities) {

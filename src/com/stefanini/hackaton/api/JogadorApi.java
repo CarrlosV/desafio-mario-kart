@@ -12,7 +12,7 @@ import javax.ws.rs.Produces;
 import javax.ws.rs.core.MediaType;
 import javax.ws.rs.core.Response;
 
-import com.stefanini.hackaton.dto.JogadorDto;
+import com.stefanini.hackaton.dto.JogadorDTO;
 import com.stefanini.hackaton.service.JogadorService;
 
 @Path("/jogador")
@@ -35,14 +35,14 @@ public class JogadorApi {
 	}
 
 	@POST
-	public Response inserir(JogadorDto dto) {
+	public Response inserir(JogadorDTO dto) {
 		return Response.ok(jogadorService.inserir(dto)).build();
 	}
 
 	
 	@PUT
 	@Path("/{id}")
-	public Response alterar(JogadorDto dto, @PathParam("id") Integer id) {
+	public Response alterar(JogadorDTO dto, @PathParam("id") Integer id) {
 		return Response.ok(jogadorService.alterar(dto)).build();
 	}
 

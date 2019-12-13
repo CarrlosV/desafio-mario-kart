@@ -7,6 +7,7 @@ public class PersonagemParserDTO extends AbstractParser<PersonagemDto, Personage
 
 	@Override
 	public PersonagemDto toDTO(Personagem entity) {
+		System.out.println("PersonagemParserDTO");
 		PersonagemDto dto = new PersonagemDto();
 		dto.setId(entity.getId());
 		dto.setNome(entity.getNome());

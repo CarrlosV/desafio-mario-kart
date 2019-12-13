@@ -1,27 +1,34 @@
 package com.stefanini.hackaton.parsers;
 
-import com.stefanini.hackaton.dto.JogadorDto;
+import javax.inject.Inject;
+
+import com.stefanini.hackaton.dto.JogadorDTO;
 import com.stefanini.hackaton.entities.Jogador;
 
-public class JogadorParserDTO extends AbstractParser<JogadorDto, Jogador> {
+public class JogadorParserDTO extends AbstractParser<JogadorDTO, Jogador> {
+	
+	@Inject
+	PersonagemParserDTO parser;
 
 	@Override
-	public JogadorDto toDTO(Jogador entity) {
-		JogadorDto dto = new JogadorDto();
+	public JogadorDTO toDTO(Jogador entity) {
+		System.out.println("Chamando o JogadorParserDTO");
+		JogadorDTO dto = new JogadorDTO();
 		dto.setId(entity.getId());
 		dto.setNickname(entity.getNickname());
 		dto.setSenha(entity.getSenha());
-		dto.setPersonagem(entity.getPersonagem());
+		dto.setPersonagem(parser.toDTO(entity.getPersonagem()));
 		return dto;
+		
 	}
 
 	@Override
-	public Jogador toEntity(JogadorDto dto) {
+	public Jogador toEntity(JogadorDTO dto) {
 		Jogador entity = new Jogador();
 		entity.setId(dto.getId());
 		entity.setNickname(dto.getNickname());
 		entity.setSenha(dto.getSenha());
-		entity.setPersonagem(dto.getPersonagem());
+		entity.setPersonagem(parser.toEntity(dto.getPersonagem()));
 		return entity;
 	}
 	

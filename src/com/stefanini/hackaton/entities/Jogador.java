@@ -25,7 +25,6 @@ public class Jogador implements Serializable {
 	private Integer id;
 	private String nickname;
 	private String senha;
-	
 	@OneToOne(fetch=FetchType.LAZY)
 	@JoinColumn(name="idPersonagem")
 	private Personagem personagem;
