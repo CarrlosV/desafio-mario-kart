@@ -89,7 +89,7 @@ public class JogadorService {
 				}
 			}
 		}
-		throw new NegocioException("Ops! Seu nickname ou senha estão incorretos!");
+		throw new NegocioException("Ops! Seu nickname ou senha estao incorretos!");
 
 	}
 }

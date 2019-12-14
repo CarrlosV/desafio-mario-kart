@@ -1,0 +1,51 @@
+<html ng-app="mariokart">
+<head>
+    <meta charset="UTF-8">
+    <title>Mario Kart</title>
+    <link rel="stylesheet" type="text/css"
+          href="lib/bootstrap/bootstrap.css">
+    <link rel="stylesheet" type="text/css" href="css/app.css">
+    <script src="lib/angular/angular.js"></script>
+    <script src="lib/angular/angular-messages.js"></script>
+    <script src="js/app.js"></script>
+    <script src="js/controllers/realizaCorridaController.js"></script>
+    <script src="js/services/personagemService.js"></script>
+</head>
+<body ng-controller="RealizaCorridaController as vm" >
+<div class="container-fluid">
+    <h1 class="titulo">Mario Kart</h1>
+    <h2 class="subtitulo">Insira os paramêtros para a corrida</h2>
+    <form ng-submit="vm.calculaCorrida()" autocomplete="off">
+        <div class="form-group">
+            <label for="distancia">Distância em kilometros:</label>
+            <input ng-model="vm.parametrosCorrida.distancia" type="number" autofocus required class="form-control" id="distancia" placeholder="Digite aqui a distancia do percurso">
+        </div>
+        <div class="form-group">
+            <label for="curvas">Digite o número de curvas:</label>
+            <input ng-model="vm.parametrosCorrida.curvas"  type="number" class="form-control" id="curvas" placeholder="Digite aqui o numero de curvas do percurso">
+        </div>
+        <div class="form-group">
+            <label for="voltas">Digite o número de voltas:</label>
+            <input ng-model="vm.parametrosCorrida.voltas" type="number" class="form-control" id="voltas" placeholder="Digite aqui o numero de voltas do percurso">
+        </div>
+        <button type="submit" class="btn btn-primary" data-toggle="modal" data-target="#modalResultado">Iniciar corrida</button>
+    </form>
+    </div>
+
+    <div ng-if="vm.auxiliar.length > 0">
+    <h2 class="subtitulo">Aqui estão as parciais da corrida</h2>
+    
+    <div class="panel panel-success">
+        <div class="panel-heading">
+            <ul class="list-group">
+                <li ng-repeat="auxiliar in vm.auxiliar" class="list-group-item" >
+                    {{auxiliar.nomeDoPersonagem}} - {{auxiliar.numeroDeIteracoesAteCompletarACorrida}}
+                </li>
+            </ul>
+        </div>
+    </div>
+    <a class="btn btn-primary" id="correrNovamente" href="http://localhost:8080/mario-kart-desafio-final/parametros-corrida.html" role="button">Correr Novamente</a>
+    </div>
+</body>
+
+</html>

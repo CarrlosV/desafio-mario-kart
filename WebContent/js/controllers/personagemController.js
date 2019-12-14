@@ -1,10 +1,10 @@
 angular.module("mariokart").controller("PersonagemController",
     PersonagemController);
 
-PersonagemController.$inject = ['$scope', 'PersonagemService', 'CadastroService'];
+PersonagemController.$inject = ['$scope', 'PersonagemService', 'CadastroService', '$window'];
 
 
-function PersonagemController($scope, PersonagemService, CadastroService) {
+function PersonagemController($scope, PersonagemService, CadastroService, $window) {
     var vm = this;
     vm.service = PersonagemService;
     vm.cadastro = CadastroService;
@@ -37,6 +37,7 @@ function PersonagemController($scope, PersonagemService, CadastroService) {
     	vm.cadastro.cadastrarJogador(vm.dadosCadastrado).success(function (response) {
             console.log("cadastro realizado com sucesso");
             console.log(response);
+            $window.location.href = '/mario-kart-desafio-final/index.html';
         }).error(function (response, status) {
             vm.validacaoDeCadastroJogador = response.mensagem;
             console.log(response);
