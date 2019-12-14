@@ -1,32 +1,55 @@
 <html ng-app="mariokart">
 <head>
-	<meta charset="UTF-8">
-	<title>Mario Kart</title>
-	<link rel="stylesheet" type="text/css"
-		href="lib/bootstrap/bootstrap.css">
-	<link rel="stylesheet" type="text/css" href="css/app.css">
-	<script src="lib/angular/angular.js"></script>
-	<script src="lib/angular/angular-messages.js"></script>
-	<script src="js/app.js"></script>
-	<script src="js/controllers/personagemController.js"></script>
-	<script src="js/services/personagemService.js"></script>
+<meta charset="UTF-8">
+<title>Mario Kart teste</title>
+<link rel="stylesheet" type="text/css"
+	href="lib/bootstrap/bootstrap.css">
+<link rel="stylesheet" type="text/css" href="css/app.css">
+<script src="lib/angular/angular.js"></script>
+<script src="lib/angular/angular-messages.js"></script>
+<script src="js/app.js"></script>
+<script src="js/controllers/personagemController.js"></script>
+<script src="js/services/cadastroService.js"></script>
+<script src="js/services/personagemService.js"></script>
 </head>
 <body ng-controller="PersonagemController as vm" ng-init="vm.init()">
 	<div class="container-fluid">
 		<h1 class="titulo">Mario Kart</h1>
-		<h2 class="subtitulo">Cadastro</h1>
-		<form action="/login" method="post" autocomplete="off">
+		<h2 class="subtitulo">Cadastro</h2>
+		<form ng-submit="vm.fazerCadastro()" autocomplete="off">
+			<div class="panel panel-danger" ng-if="vm.validacaoDeCadastroJogador">
+				<div class="panel-heading">
+					<h3 class="panel-title">Erro</h3>
+				</div>
+				<div class="panel-body">{{vm.validacaoDeCadastroJogador}}</div>
+			</div>
 			<div class="form-group">
-				<label for="nickname">Nickname:</label>
-				<input type="text" autofocus required class="form-control" id="nickname" placeholder="Digite aqui o seu nickname">
+				<label for="nickname">Insira um nickname:</label> <input
+					ng-model="vm.dadosCadastrado.nickname" type="text" autofocus
+					required class="form-control" id="nickname"
+					placeholder="Digite aqui o seu nickname">
 			</div>
 
 			<div class="form-group">
-				<label for="senha">Senha:</label>
-				<input type="password" required minlength="6" maxlength="10" class="form-control" id="senha" placeholder="Digite aqui a sua senha">
+				<label for="senha">Insira uma senha: </label> <input
+					ng-model="vm.dadosCadastrado.senha" type="password" required
+					minlength="6" maxlength="8" class="form-control" id="senha"
+					placeholder="Digite aqui a sua senha">
 			</div>
-			<button type="submit" class="btn btn-primary">Fazer login</button>
-			<a class="btn btn-primary" id="naoCadastrado" href="http://localhost:8080/mario-kart-desafio-final/cadastro-novo-jogador.html" role="button">Não tenho cadastro</a>
+
+			<div class="form-group">
+				<label>Escolha um Personagem: </label><br>
+				<div class="form-control">
+					<select name="personagem" id="personagem" class="form-control"
+						required
+						ng-options="personagem as personagem.nome for personagem in vm.personagens"
+						ng-model="vm.dadosCadastrado.personagem"></select>
+				</div>
+			</div>
+			<button type="submit" class="btn btn-primary">Cadastrar</button>
+			<a class="btn btn-primary" id="naoCadastrado"
+				href="http://localhost:8080/mario-kart-desafio-final/" role="button">Já
+				tenho cadastro</a>
 		</form>
 	</div>
 </body>

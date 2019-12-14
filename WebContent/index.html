@@ -1,7 +1,7 @@
 <html ng-app="mariokart">
 <head>
 	<meta charset="UTF-8">
-	<title>Mario Kart</title>
+	<title>Mario Kart Teste</title>
 	<link rel="stylesheet" type="text/css"
 		href="lib/bootstrap/bootstrap.css">
 	<link rel="stylesheet" type="text/css" href="css/app.css">
@@ -10,20 +10,29 @@
 	<script src="js/app.js"></script>
 	<script src="js/controllers/personagemController.js"></script>
 	<script src="js/services/personagemService.js"></script>
+	<script src="js/controllers/loginController.js"></script>
+	<script src="js/services/loginService.js"></script>
+	<script src="js/services/cadastroService.js"></script>
 </head>
-<body ng-controller="PersonagemController as vm" ng-init="vm.init()">
+<body ng-controller="LoginController as vm">
 	<div class="container-fluid">
 		<h1 class="titulo">Mario Kart</h1>
-		<h2 class="subtitulo">Faça seu login para continuar</h1>
-		<form action="/login" method="post" autocomplete="off">
+		<h2 class="subtitulo">Faça seu login para continuar</h2>
+		<form ng-submit="vm.validarJogador()" autocomplete="off">
+			<div class="panel panel-danger" ng-if="vm.validacaoDeLoginJogador">
+				<div class="panel-heading">
+					<h3 class="panel-title">Erro</h3>
+				</div>
+				<div class="panel-body">{{vm.validacaoDeLoginJogador}}</div>
+			</div>			
 			<div class="form-group">
 				<label for="nickname">Nickname:</label>
-				<input type="text" autofocus required class="form-control" id="nickname" placeholder="Digite aqui o seu nickname">
+				<input ng-model="vm.dadosRecebidos.nickname" type="text" autofocus required class="form-control" id="nickname" placeholder="Digite aqui o seu nickname">
 			</div>
 
 			<div class="form-group">
 				<label for="senha">Senha:</label>
-				<input type="password" required minlength="6" maxlength="10" class="form-control" id="senha" placeholder="Digite aqui a sua senha">
+				<input ng-model="vm.dadosRecebidos.senha" type="password" required minlength="6" maxlength="8" class="form-control" id="senha" placeholder="Digite aqui a sua senha">
 			</div>
 			<button type="submit" class="btn btn-primary">Fazer login</button>
 			<a class="btn btn-primary" id="naoCadastrado" href="http://localhost:8080/mario-kart-desafio-final/cadastro-novo-jogador.html" role="button">Não tenho cadastro</a>

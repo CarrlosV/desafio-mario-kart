@@ -12,7 +12,10 @@ import javax.ws.rs.Produces;
 import javax.ws.rs.core.MediaType;
 import javax.ws.rs.core.Response;
 
+import com.stefanini.hackaton.dto.AutenticarDTO;
+import com.stefanini.hackaton.dto.CadastroDTO;
 import com.stefanini.hackaton.dto.JogadorDTO;
+import com.stefanini.hackaton.rest.exceptions.NegocioException;
 import com.stefanini.hackaton.service.JogadorService;
 
 @Path("/jogador")
@@ -22,6 +25,7 @@ public class JogadorApi {
 	
 	@Inject
 	private JogadorService jogadorService;
+	
 
 	@GET
 	public Response listar() {
@@ -35,8 +39,14 @@ public class JogadorApi {
 	}
 
 	@POST
-	public Response inserir(JogadorDTO dto) {
+	public Response inserir(CadastroDTO dto) throws NegocioException {
 		return Response.ok(jogadorService.inserir(dto)).build();
+	}
+	
+	@POST
+	@Path("/login")
+	public Response logar(AutenticarDTO dto) throws NegocioException {
+		return Response.ok(jogadorService.autenticar(dto)).build();
 	}
 
 	
